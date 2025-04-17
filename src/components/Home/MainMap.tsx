@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, useMap, useAdvancedMarkerRef } from '@vis.gl/react-google-maps'
 import { locationList, RawLocation } from '@/data/locations'
 
-
+type Props = {}
 
 export default function MainMap({ }: Props) {
   const position = { lat: 41.01750875299681, lng: 28.9709432341656 };
@@ -19,15 +19,10 @@ export default function MainMap({ }: Props) {
             </AdvancedMarker> */}
           </Map>
         </div>
-
       </APIProvider>
-
     </section>
   )
 }
-
-type Point = google.maps.LatLngLiteral & { key: string }
-type Props = { points: Point[] }
 
 const Markers = ({ points }: { points: RawLocation[] }) => {
   const [showLocationName, setShowLocationName] = useState<number | null>(null)
