@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps'
 import { RiArrowRightLine } from "react-icons/ri";
+import { Card } from '@chakra-ui/react';
 
 type Props = {}
 
@@ -48,18 +49,26 @@ export default function Directions({ }: Props) {
   if (!leg) return null
 
   return (
-    <div className='absolute top-2 right-4 bg-white rounded-lg shadow-lg p-4'>
-      <h3 className='font-bold'>{selectedRoute.summary}</h3>
-      <p className='flex items-center'>
-        {leg.start_address.split(',')[0]} <RiArrowRightLine /> {leg.end_address.split(',')[0]}
-      </p>
-      <p className='font-medium'>Uzaklık: {leg.distance?.text}</p>
-      <p className='font-medium'>Süre: {leg.duration?.text}</p>
-      <ul>
-        {
-          routes.map((route, index) => <li key={index}><button onClick={() => setRouteIndex(index)}>{route.summary}</button></li>)
-        }
-      </ul>
+    <div className='absolute top-2 right-4'>
+      <Card.Root>
+        <Card.Body>
+          <h3 className='font-bold'>{selectedRoute.summary}</h3>
+          <p className='flex items-center'>
+            {leg.start_address.split(',')[0]} <RiArrowRightLine /> {leg.end_address.split(',')[0]}
+          </p>
+          <p className='font-medium'>Uzaklık: {leg.distance?.text}</p>
+          <p className='font-medium'>Süre: {leg.duration?.text}</p>
+          <ul className='px-2'>
+            {
+              routes.map((route, index) => <li key={index}>
+                <button type='button' onClick={() => setRouteIndex(index)}
+                  className='hover:underline cursor-pointer'
+                >{route.summary}</button>
+              </li>)
+            }
+          </ul>
+        </Card.Body>
+      </Card.Root>
     </div>
   )
 }
