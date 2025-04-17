@@ -3,7 +3,7 @@ import MainMap from "@/components/Home/MainMap";
 export default function Home() {
   return (
     <main>
-      <MainMap />
+      <MainMap points={[]} />
     </main>
   );
 }
