@@ -1,6 +1,6 @@
 interface SavedLocationsContextType {
-  savedLocations: Location[]
-  addLocations: (location: Location) => void
+  savedLocations: SavedLocationType[]
+  addLocations: (location: SavedLocation) => void
 }
 
 interface Coordinates {
@@ -8,7 +8,7 @@ interface Coordinates {
   lng: number;
 }
 
-interface Location {
+interface SavedLocationType {
   name: string;
   coordinates: Coordinates;
 }

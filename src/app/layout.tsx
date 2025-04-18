@@ -4,7 +4,7 @@ import "./globals.css";
 import { Provider } from "@/components/ui/provider";
 import Header from "@/components/Header";
 import { MarkerColorProvider } from "@/context/MarkerContext";
-import { SavedLocationsProvider } from "@/context/SavedLocations";
+import { SavedLocationsProvider } from "@/context/SavedLocationsContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -5,7 +5,7 @@ const MarkerContext = createContext<MarkerContextType | undefined>(undefined);
 
 export function MarkerColorProvider({ children }: ChildrenProp) {
   const [markerColor, setMarkerColor] = useState('');
-  const [bgColor, setBgColor] = useState('');
+  const [background, setBackground] = useState('');
   const [borderColor, setBorderColor] = useState('');
   const [glyphColor, setGlyphColor] = useState('');
 
@@ -16,7 +16,7 @@ export function MarkerColorProvider({ children }: ChildrenProp) {
     const storedGlyphColor = localStorage.getItem('markerGlyphColor');
 
     if (storedMarkerColor) setMarkerColor(storedMarkerColor);
-    if (storedBgColor) setBgColor(storedBgColor);
+    if (storedBgColor) setBackground(storedBgColor);
     if (storedBorderColor) setBorderColor(storedBorderColor);
     if (storedGlyphColor) setGlyphColor(storedGlyphColor);
   }, []);
@@ -28,7 +28,7 @@ export function MarkerColorProvider({ children }: ChildrenProp) {
   };
 
   const changeBgColor = (newColor: string) => {
-    setBgColor(newColor);
+    setBackground(newColor);
     localStorage.setItem('markerBgColor', newColor);
   };
 
@@ -44,7 +44,7 @@ export function MarkerColorProvider({ children }: ChildrenProp) {
 
   const values = {
     markerColor,
-    bgColor,
+    background,
     borderColor,
     glyphColor,
     changeMarkerColor,

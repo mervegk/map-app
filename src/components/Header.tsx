@@ -8,6 +8,7 @@ export default function Header({ }: Props) {
   return (
     <header className="container mx-auto">
       <nav className="text-center p-4 flex items-center justify-center w-full h-full gap-4">
+        <Link href='/add-location' className="hover:underline">Konum Ekleme</Link>
         <Link href='/location-list' className="hover:underline">Konum Listesi</Link>
         <Dialog.Root closeOnInteractOutside={false} size={{ md: 'md', lg: 'lg' }}>
           <Dialog.Trigger asChild>

@@ -1,20 +1,18 @@
 'use client'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, useMap, useAdvancedMarkerRef, Marker, MapMouseEvent } from '@vis.gl/react-google-maps'
-import Directions from './Directions'
-import Markers from './Markers'
-import { Popover, Button, Portal } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
+import SaveLocation from '@/components/Home/SaveLocation'
+import Markers from '@/components/Home/Markers'
 import { useMarkerColor } from '@/context/MarkerContext'
 import { useSavedLocations } from '@/context/SavedLocationsContext'
+import { defaultPosition } from '@/components/Home/MainMap'
+import { LatLng } from '@/components/Home/MainMap'
+import { locationList } from '@/data/locations'
 
 type Props = {}
-export type LatLng = {
-  lat: number | null;
-  lng: number | null;
-}
-export const defaultPosition = { lat: 41.01750875299681, lng: 28.9709432341656 }
 
-export default function MainMap({ }: Props) {
+export default function LocationList({ }: Props) {
   const { background, borderColor, glyphColor } = useMarkerColor()
   const { savedLocations, addLocations } = useSavedLocations()
   const [position, setPosition] = useState<google.maps.LatLngLiteral | null>(null)
@@ -26,27 +24,6 @@ export default function MainMap({ }: Props) {
 
     setPosition({ lat: latLng.lat, lng: latLng.lng })
   }, [])
-
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      console.log("Geolocation tarayıcınız tarafından desteklenmiyor");
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (err) => {
-          console.log("Konomunuza erişilirken bir hata meydana geldi: " + err.message);
-        },
-        {
-          enableHighAccuracy: true
-        }
-      );
-    }
-  }, []);
 
   return (
     <section className='relative w-full h-full'>
@@ -63,16 +40,13 @@ export default function MainMap({ }: Props) {
                 <AdvancedMarker position={position} >
                   <Pin background={background} borderColor={borderColor} glyphColor={glyphColor} />
                 </AdvancedMarker>
-                <Button size="sm" variant="subtle" className='absolute bottom-2 left-4 shadow-lg'
+                <div className='absolute bottom-2 left-4 shadow-lg'
                 >
-                  Konumu kaydet
-                </Button>
+                  <SaveLocation lat={position.lat} lng={position.lng} />
+                </div>
               </>
             )}
-            {/* <Directions /> */}
-            {/*  <AdvancedMarker position={position}>
-              <Pin background='orange' borderColor='mediumvioletred' glyphColor='white' />
-            </AdvancedMarker> */}
+            <Markers points={savedLocations} markerColors={{ background, borderColor, glyphColor }} />
           </Map>
         </div>
       </APIProvider>

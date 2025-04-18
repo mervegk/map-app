@@ -1,6 +1,6 @@
 interface MarkerContextType {
   markerColor: string;
-  bgColor: string;
+  background: string;
   borderColor: string;
   glyphColor: string;
   changeMarkerColor: (newColor: string) => void;

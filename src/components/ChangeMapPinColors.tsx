@@ -7,7 +7,7 @@ type Props = {}
 
 export default function ChangeMapPinColors({ type, label }: MapPinColors) {
   const { markerColor,
-    bgColor,
+    background,
     borderColor,
     glyphColor,
     changeMarkerColor,
@@ -43,7 +43,7 @@ export default function ChangeMapPinColors({ type, label }: MapPinColors) {
         rawColor = markerColor
         break
       case 'background':
-        rawColor = bgColor
+        rawColor = background
         break
       case 'border':
         rawColor = borderColor
