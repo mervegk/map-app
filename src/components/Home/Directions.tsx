@@ -56,8 +56,10 @@ export default function Directions({ }: Props) {
           <p className='flex items-center'>
             {leg.start_address.split(',')[0]} <RiArrowRightLine /> {leg.end_address.split(',')[0]}
           </p>
-          <p className='font-medium'>Uzaklık: {leg.distance?.text}</p>
-          <p className='font-medium'>Süre: {leg.duration?.text}</p>
+          <div className='flex max-lg:flex-col items-center gap-2 lg:gap-4'>
+            <p className='font-medium'>Uzaklık: {leg.distance?.text}</p>
+            <p className='font-medium'>Süre: {leg.duration?.text}</p>
+          </div>
           <ul className='px-2'>
             {
               routes.map((route, index) => <li key={index}>

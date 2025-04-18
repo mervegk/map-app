@@ -25,7 +25,8 @@ export default function Markers({ points }: { points: RawLocation[] }) {
               </InfoWindow>
             )
           }
-        </AdvancedMarker>)
+        </AdvancedMarker>
+      )
     }
     )
     }

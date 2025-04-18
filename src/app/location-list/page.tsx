@@ -4,6 +4,8 @@ type Props = {}
 
 export default function LocationList({ }: Props) {
   return (
-    <section>LocationList</section>
+    <section>
+
+    </section>
   )
 }
