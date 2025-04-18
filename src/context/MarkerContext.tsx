@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const MarkerContext = createContext<MarkerContextType | undefined>(undefined);
 
