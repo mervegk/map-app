@@ -5,15 +5,19 @@ import Directions from './Directions'
 import Markers from './Markers'
 import { locationList } from '@/data/locations'
 import { Popover, Button, Portal } from '@chakra-ui/react'
+import { useMarkerColor } from '@/context/MarkerContext'
 
 type Props = {}
 type LatLng = {
   lat: number | null;
   lng: number | null;
-
 }
 
 export default function MainMap({ }: Props) {
+  const {
+    bgColor,
+    borderColor,
+    glyphColor } = useMarkerColor()
   const [position, setPosition] = useState<google.maps.LatLngLiteral | null>(null)
   const [location, setLocation] = useState<LatLng>({ lat: null, lng: null })
   const defaultPosition = { lat: 41.01750875299681, lng: 28.9709432341656 }
@@ -25,11 +29,9 @@ export default function MainMap({ }: Props) {
     setPosition({ lat: latLng.lat, lng: latLng.lng })
   }, [])
 
-  // console.log(position);
-
   useEffect(() => {
     if (!navigator.geolocation) {
-      console.log("Geolocation is not supported by your browser");
+      console.log("Geolocation tarayıcınız tarafından desteklenmiyor");
     } else {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -39,7 +41,7 @@ export default function MainMap({ }: Props) {
           });
         },
         (err) => {
-          console.log("Unable to retrieve your location: " + err.message);
+          console.log("Konomunuza erişilirken bir hata meydana geldi: " + err.message);
         },
         {
           enableHighAccuracy: true
@@ -61,7 +63,7 @@ export default function MainMap({ }: Props) {
             {position && (
               <>
                 <AdvancedMarker position={position} >
-                  <Pin />
+                  <Pin background={bgColor} borderColor={borderColor} glyphColor={glyphColor} />
                 </AdvancedMarker>
                 <Button size="sm" variant="subtle" className='absolute bottom-2 left-4 shadow-lg'>
                   Konumu kaydet
