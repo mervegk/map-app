@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps'
 import { RiArrowRightLine } from "react-icons/ri";
 import { Card } from '@chakra-ui/react';
-import { LatLng } from './MainMap';
+import { LatLng } from './Home/MainMap';
 
 type Props = {
   destination: any
