@@ -15,8 +15,8 @@ export default function Directions({ destination }: Props) {
   const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer>()
   const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([])
   const [routeIndex, setRouteIndex] = useState(0)
-
   const [location, setLocation] = useState<LatLng>({ lat: null, lng: null })
+  const [travelMode, setTravelMode] = useState<google.maps.TravelMode>(google.maps.TravelMode.DRIVING)
 
   const selectedRoute = routes[routeIndex]
   const leg = selectedRoute?.legs[0]
@@ -36,7 +36,7 @@ export default function Directions({ destination }: Props) {
     directionsService.route({
       origin: `${location.lat}, ${location.lng}`,
       destination: `${destination.lat}, ${destination.lng}`,
-      travelMode: google.maps.TravelMode.DRIVING,
+      travelMode: travelMode,
       provideRouteAlternatives: true
     }).then(res => {
       directionsRenderer.setDirections(res)
@@ -75,13 +75,14 @@ export default function Directions({ destination }: Props) {
     }
   }, []);
 
+  console.log(travelMode);
 
   if (!leg) return null
 
   return (
     <div className='absolute top-2 right-4'>
       <Card.Root>
-        <Card.Body padding='.7rem'>
+        <Card.Body>
           <h3 className='font-bold'>{selectedRoute.summary}</h3>
           <p className='flex items-center'>
             {leg.start_address.split(',')[0]} <RiArrowRightLine /> {leg.end_address.split(',')[0]}
@@ -100,6 +101,16 @@ export default function Directions({ destination }: Props) {
                   >{route.summary}</button>
                 </li>)
               }
+            </ul>
+          </div>
+          <div>
+            <p>Ulaşım Şekli:</p>
+            <ul>
+              <li>
+                <button onClick={() => setTravelMode(google.maps.TravelMode.WALKING)}
+                  className='hover:underline'
+                >Yürüyüş</button>
+              </li>
             </ul>
           </div>
         </Card.Body>
