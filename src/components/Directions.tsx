@@ -75,8 +75,6 @@ export default function Directions({ destination }: Props) {
     }
   }, []);
 
-  console.log(travelMode);
-
   if (!leg) return null
 
   return (
