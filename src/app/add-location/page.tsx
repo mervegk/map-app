@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, useMap, useAdvancedMarkerRef, Marker, MapMouseEvent } from '@vis.gl/react-google-maps'
 import { Button } from '@chakra-ui/react'
-import SaveLocation from '@/components/Home/SaveLocation'
+import SaveLocation from '@/components/SaveLocation'
 import Markers from '@/components/Home/Markers'
 import { useMarkerColor } from '@/context/MarkerContext'
 import { useSavedLocations } from '@/context/SavedLocationsContext'

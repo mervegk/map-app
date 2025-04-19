@@ -1,11 +1,7 @@
 'use client'
 import { useState, useCallback, useEffect } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, useMap, useAdvancedMarkerRef, Marker, MapMouseEvent } from '@vis.gl/react-google-maps'
-import Directions from './Directions'
-import Markers from './Markers'
-import { Popover, Button, Portal } from '@chakra-ui/react'
 import { useMarkerColor } from '@/context/MarkerContext'
-import { useSavedLocations } from '@/context/SavedLocationsContext'
 
 type Props = {}
 export type LatLng = {
@@ -16,37 +12,7 @@ export const defaultPosition = { lat: 41.01750875299681, lng: 28.9709432341656 }
 
 export default function MainMap({ }: Props) {
   const { background, borderColor, glyphColor } = useMarkerColor()
-  const { savedLocations, addLocations } = useSavedLocations()
   const [position, setPosition] = useState<google.maps.LatLngLiteral | null>(null)
-  const [location, setLocation] = useState<LatLng>({ lat: null, lng: null })
-
-  const handleMapClick = useCallback((e: MapMouseEvent) => {
-    const { latLng } = e.detail
-    if (!latLng) return;
-
-    setPosition({ lat: latLng.lat, lng: latLng.lng })
-  }, [])
-
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      console.log("Geolocation tarayıcınız tarafından desteklenmiyor");
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (err) => {
-          console.log("Konomunuza erişilirken bir hata meydana geldi: " + err.message);
-        },
-        {
-          enableHighAccuracy: true
-        }
-      );
-    }
-  }, []);
 
   return (
     <section className='relative w-full h-full'>
@@ -56,23 +22,10 @@ export default function MainMap({ }: Props) {
             defaultCenter={position || defaultPosition}
             mapId={process.env.NEXT_PUBLIC_MAP_ID}
             gestureHandling='greedy'
-            onClick={handleMapClick}
           >
-            {position && (
-              <>
-                <AdvancedMarker position={position} >
-                  <Pin background={background} borderColor={borderColor} glyphColor={glyphColor} />
-                </AdvancedMarker>
-                <Button size="sm" variant="subtle" className='absolute bottom-2 left-4 shadow-lg'
-                >
-                  Konumu kaydet
-                </Button>
-              </>
-            )}
-            {/* <Directions /> */}
-            {/*  <AdvancedMarker position={position}>
-              <Pin background='orange' borderColor='mediumvioletred' glyphColor='white' />
-            </AdvancedMarker> */}
+            <AdvancedMarker position={position}>
+              <Pin background={background} borderColor={borderColor} glyphColor={glyphColor} />
+            </AdvancedMarker>
           </Map>
         </div>
       </APIProvider>
