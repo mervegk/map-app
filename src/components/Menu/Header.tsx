@@ -1,6 +1,4 @@
 import Link from "next/link"
-import { Button, CloseButton, Dialog, Portal, Drawer } from "@chakra-ui/react"
-import ChangeMapPinColors from "../ChangeMapPinColors"
 import MobileMenu from "./MobileMenu"
 import MenuList from "./MenuList"
 
