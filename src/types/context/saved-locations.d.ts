@@ -9,6 +9,7 @@ interface Coordinates {
 }
 
 interface SavedLocationType {
+  id: number
   name: string;
   coordinates: Coordinates;
 }
