@@ -10,21 +10,29 @@ import {
   DrawerTrigger
 } from "../ui/drawer";
 import { Button } from "../ui/button";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import MenuList from "./MenuList";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 type Props = {}
 
 export default function MobileMenu({ }: Props) {
   return (
     <div className="block lg:hidden">
-      <Drawer>
+      <Drawer direction="left">
         <DrawerTrigger asChild>
           <Button variant="outline" size="sm">
             <RxHamburgerMenu />
           </Button>
         </DrawerTrigger>
         <DrawerContent>
+          <DrawerHeader>
+            <DialogClose className="flex justify-end items-center">
+              <RxCross1 color='black' />
+            </DialogClose>
+            <DrawerTitle hidden></DrawerTitle>
+            <DrawerDescription hidden></DrawerDescription>
+          </DrawerHeader>
           <MenuList />
         </DrawerContent>
       </Drawer>

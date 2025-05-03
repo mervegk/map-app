@@ -124,7 +124,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .menu-items {
+    @apply w-full h-full py-1 px-2 hover:bg-gray-200 duration-300 transition-colors ease-in-out
   }
 }

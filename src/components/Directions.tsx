@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps'
 import { RiArrowRightLine } from "react-icons/ri";
-import { Card } from '@chakra-ui/react';
 import { LatLng } from './Home/MainMap';
+import { Card, CardContent } from './ui/card';
 
 type Props = {
   destination: any
@@ -45,7 +45,7 @@ export default function Directions({ destination }: Props) {
       console.error("Directions API error:", err);
     });
 
-  }, [directionsService, directionsRenderer, location, destination])
+  }, [directionsService, directionsRenderer, location, destination, travelMode])
 
 
   useEffect(() => {
@@ -79,8 +79,8 @@ export default function Directions({ destination }: Props) {
 
   return (
     <div className='absolute top-2 right-4'>
-      <Card.Root>
-        <Card.Body>
+      <Card>
+        <CardContent>
           <h3 className='font-bold'>{selectedRoute.summary}</h3>
           <p className='flex items-center'>
             {leg.start_address.split(',')[0]} <RiArrowRightLine /> {leg.end_address.split(',')[0]}
@@ -105,14 +105,24 @@ export default function Directions({ destination }: Props) {
             <p>Ulaşım Şekli:</p>
             <ul>
               <li>
+                <button onClick={() => setTravelMode(google.maps.TravelMode.DRIVING)}
+                  className='hover:underline'
+                >Yürüyüş</button>
+              </li>
+              <li>
                 <button onClick={() => setTravelMode(google.maps.TravelMode.WALKING)}
                   className='hover:underline'
                 >Yürüyüş</button>
               </li>
+              <li>
+                <button onClick={() => setTravelMode(google.maps.TravelMode.TRANSIT)}
+                  className='hover:underline'
+                >Toplu Taşıma</button>
+              </li>
             </ul>
           </div>
-        </Card.Body>
-      </Card.Root>
+        </CardContent>
+      </Card>
     </div>
   )
 }
