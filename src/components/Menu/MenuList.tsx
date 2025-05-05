@@ -15,16 +15,18 @@ import { RxCross1 } from 'react-icons/rx'
 
 export default function MenuList() {
   return (
-    <div className='max-lg:flex max-lg:flex-col max-lg:gap-4 gap-2'>
-      <Link href='/' className="hover:underline">Ana</Link>
-      <Link href='/add-location' className="hover:underline">Konum Ekleme</Link>
-      <Link href='/location-list' className="hover:underline">Konum Listesi</Link>
-      <Link href='directions' className="hover:underline">Rota Oluşturma</Link>
+    <div className='flex max-lg:flex-col lg:gap-3'>
+      <Link href='/' className="menu-items">Ana Sayfa</Link>
+      <Link href='/add-location' className="menu-items">Konum Ekleme</Link>
+      <Link href='/location-list' className="menu-items">Konum Listesi</Link>
+      <Link href='directions' className="menu-items">Rota Oluşturma</Link>
       <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline" size="sm" type="button">
-            Renk Ayarları
-          </Button>
+        <DialogTrigger asChild >
+          <div className='max-lg:px-2 max-lg:w-full max-lg:flex max-lg:justify-center max-lg:items-center max-lg:mt-3'>
+            <Button variant="outline" size="sm" type="button" className='cursor-pointer max-lg:w-full'>
+              Renk Ayarları
+            </Button>
+          </div>
         </DialogTrigger>
         <DialogContent className="bg-white" >
           <DialogHeader>

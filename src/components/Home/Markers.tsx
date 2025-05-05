@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useMap, AdvancedMarker, InfoWindow, Pin, useAdvancedMarkerRef } from "@vis.gl/react-google-maps"
 
 type Props = {
@@ -12,7 +12,7 @@ export default function Markers({ points, markerColors }: Props) {
 
   return <>
     {points.map((point, index,) => {
-      const [markerRef, marker] = useAdvancedMarkerRef()
+      const [markerRef, marker] = useAdvancedMarkerRef();
       return (
         <AdvancedMarker
           key={index}

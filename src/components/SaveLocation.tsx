@@ -1,6 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { Button, CloseButton, Dialog, Portal, Input } from "@chakra-ui/react"
+import { Button } from './ui/button'
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from './ui/dialog'
+import { Input } from './ui/input'
 import { useSavedLocations } from '@/context/SavedLocationsContext'
 
 export default function SaveLocation({ lat, lng }: Coordinates) {
@@ -11,7 +13,8 @@ export default function SaveLocation({ lat, lng }: Coordinates) {
     if (locationName) {
       const newLocation: SavedLocationType = {
         name: locationName,
-        coordinates: { lat, lng }
+        coordinates: { lat, lng },
+        id: 0
       }
       addLocations(newLocation)
     }
@@ -19,32 +22,25 @@ export default function SaveLocation({ lat, lng }: Coordinates) {
 
   return (
     <div>
-      <Dialog.Root closeOnInteractOutside={false} size={{ md: 'md', lg: 'lg' }}>
-        <Dialog.Trigger asChild>
-          <Button variant="outline" size="sm" colorPalette='red' type="button">
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline" size="sm" type="button">
             Konumu Ekle
           </Button>
-        </Dialog.Trigger>
-        <Portal>
-          <Dialog.Backdrop />
-          <Dialog.Positioner>
-            <Dialog.Content className="bg-white" >
-              <Dialog.Body className="flex flex-col justify-center gap-2 mt-9">
-                <div>
-                  <p>Konum Adı <span className='text-red-500'>*</span></p>
-                  <Input onChange={(e) => setLocationName(e.target.value)} required />
-                </div>
-              </Dialog.Body>
-              <Dialog.Footer>
-                <Button variant='subtle' onClick={handleAddLocation}>Kaydet</Button>
-              </Dialog.Footer>
-              <Dialog.CloseTrigger asChild>
-                <CloseButton size="sm" colorPalette='red' />
-              </Dialog.CloseTrigger>
-            </Dialog.Content>
-          </Dialog.Positioner>
-        </Portal>
-      </Dialog.Root>
+        </DialogTrigger>
+        <DialogContent className="bg-white" >
+          <DialogHeader>
+            <DialogTitle>Konum Ekle</DialogTitle>
+          </DialogHeader>
+          <div>
+            <p>Konum Adı <span className='text-red-500'>*</span></p>
+            <Input onChange={(e) => setLocationName(e.target.value)} required />
+          </div>
+          <DialogFooter>
+            <Button onClick={handleAddLocation}>Kaydet</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
