@@ -30,7 +30,7 @@ export default function MenuList() {
         <DialogContent className='lg:max-w-2xl'>
           <DialogHeader>
             <DialogClose />
-            <DialogTitle></DialogTitle>
+            <DialogTitle hidden></DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
           <div className="flex flex-col justify-center gap-3">

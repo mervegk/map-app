@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { useMarkerColor } from '@/context/MarkerContext'
-import { HexColorPicker, HexColorInput } from "react-colorful";
 import { Button } from './ui/button';
 import PopoverColorPicker from './PopoverColorPicker';
 
@@ -56,11 +55,11 @@ export default function ChangeMapPinColors({ type, label }: MapPinColors) {
   }
 
   return (
-    <div className='grid grid-cols-3 items-center gap-2'>
-
+    <div className='grid max-sm:grid-cols-1 max-sm:justify-center grid-cols-[40%_20%_40%] items-center gap-2'>
       <p>{label}</p>
       <PopoverColorPicker color={color} onChange={setColor} />
-      <Button type='button'
+      <Button
+        type='button'
         variant='outline'
         size="sm"
         onClick={handleColorChange}

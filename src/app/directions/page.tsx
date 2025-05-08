@@ -3,7 +3,6 @@ import { useState, useCallback, useEffect } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, MapMouseEvent } from '@vis.gl/react-google-maps'
 import Directions from '@/components/Directions'
 import { useMarkerColor } from '@/context/MarkerContext'
-import { useSavedLocations } from '@/context/SavedLocationsContext'
 
 type Props = {}
 export type LatLng = {

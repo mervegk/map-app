@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { useSavedLocations } from "@/context/SavedLocationsContext"
 import { useMarkerColor } from "@/context/MarkerContext"
+import PageTitle from "@/components/PageTitle"
 
 type Props = {}
 
@@ -12,6 +13,7 @@ export default function page({ }: Props) {
 
   return (
     <section className='container mx-auto max-md:p-4 mt-4'>
+      <PageTitle title="Konum Listesi" />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4'>
         {
           savedLocations && savedLocations.map((location, index) =>
