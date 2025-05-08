@@ -25,7 +25,7 @@ export default function SaveLocation({ lat, lng }: Coordinates) {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline" size="sm" type="button">
+          <Button size="lg" type="button" className='text-xl bg-[#2d3142] text-white'>
             Konumu Ekle
           </Button>
         </DialogTrigger>

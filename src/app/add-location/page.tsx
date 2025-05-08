@@ -7,7 +7,6 @@ import { useMarkerColor } from '@/context/MarkerContext'
 import { useSavedLocations } from '@/context/SavedLocationsContext'
 import { defaultPosition } from '@/components/Home/MainMap'
 import { LatLng } from '@/components/Home/MainMap'
-import { locationList } from '@/data/locations'
 
 type Props = {}
 
@@ -39,7 +38,7 @@ export default function LocationList({ }: Props) {
                 <AdvancedMarker position={position} >
                   <Pin background={background} borderColor={borderColor} glyphColor={glyphColor} />
                 </AdvancedMarker>
-                <div className='absolute bottom-2 left-4 shadow-lg'
+                <div className='absolute bottom-4 left-4 shadow-lg'
                 >
                   <SaveLocation lat={position.lat} lng={position.lng} />
                 </div>
