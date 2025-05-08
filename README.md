@@ -9,5 +9,3 @@ pnpm dev
 bun dev
 ```
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-This was a case study for a company that treated me rudely, but I decided to develop the project anyway to learn more about map implementation.
