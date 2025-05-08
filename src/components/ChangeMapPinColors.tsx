@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useMarkerColor } from '@/context/MarkerContext'
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { Button } from './ui/button';
+import PopoverColorPicker from './PopoverColorPicker';
 
 export default function ChangeMapPinColors({ type, label }: MapPinColors) {
 
@@ -55,20 +56,16 @@ export default function ChangeMapPinColors({ type, label }: MapPinColors) {
   }
 
   return (
-    <div>
-      <div className='grid grid-cols-2 items-center gap-2'>
-        <HexColorPicker color={getColorByType()} onChange={setColor} />
-        <HexColorInput color={color} onChange={setColor} />
-        <div>
-          <p>{label}</p>
-          <Button type='button'
-            variant='outline'
-            size="sm"
-            onClick={handleColorChange}
-            className='mt-2'
-          >Rengi kaydet</Button>
-        </div>
-      </div>
+    <div className='grid grid-cols-3 items-center gap-2'>
+
+      <p>{label}</p>
+      <PopoverColorPicker color={color} onChange={setColor} />
+      <Button type='button'
+        variant='outline'
+        size="sm"
+        onClick={handleColorChange}
+        className='mt-2'
+      >Rengi kaydet</Button>
     </div >
   )
 }

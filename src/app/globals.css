@@ -133,4 +133,19 @@
   .menu-items {
     @apply max-lg:w-full max-lg:h-full max-lg:p-3 lg:py-1 lg:px-2 lg:h-full hover:bg-gray-200 duration-300 transition-colors ease-in-out
   }
+
+  .swatch {
+    @apply w-7 h-7 rounded-lg border-3 border-white shadow-lg cursor-pointer
+  }
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  border-radius: 9px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.20);
+  z-index: 1000;
+  background: white;
+  padding: 10px;
 }

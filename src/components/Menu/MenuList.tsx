@@ -11,7 +11,6 @@ import {
 import Link from 'next/link'
 import React from 'react'
 import ChangeMapPinColors from '../ChangeMapPinColors'
-import { RxCross1 } from 'react-icons/rx'
 
 export default function MenuList() {
   return (
@@ -28,20 +27,18 @@ export default function MenuList() {
             </Button>
           </div>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className='lg:max-w-2xl'>
           <DialogHeader>
             <DialogClose />
             <DialogTitle></DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col justify-center gap-2">
+          <div className="flex flex-col justify-center gap-3">
             <ChangeMapPinColors type="background" label="Marker Arka Plan Rengi" />
             <ChangeMapPinColors type="border" label="Marker Kenar Rengi" />
             <ChangeMapPinColors type="glyph" label="Marker Daire Rengi" />
           </div>
-
         </DialogContent>
-
       </Dialog>
     </div>
   )
