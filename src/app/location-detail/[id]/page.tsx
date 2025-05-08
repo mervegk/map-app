@@ -1,21 +1,22 @@
 
-import PageWrapper from "./PageWrapper"
+'use client'
+import { useParams } from "next/navigation"
+import { useSavedLocations } from "@/context/SavedLocationsContext"
+import { Card, CardTitle, CardContent } from "@/components/ui/card";
+import PageTitle from "@/components/PageTitle";
 
-export async function generateStaticParams() {
-  // const posts = await fetch('https://.../posts').then((res) => res.json())
+export default function Page() {
 
-  const posts = localStorage.getItem('savedPlaces')
-  const savedPost = JSON.parse(posts)
-  return savedPost?.map((post: any) => ({
-    slug: post.id,
-  }))
-}
+  const { id } = useParams();
+  const { savedLocations } = useSavedLocations();
 
-export default async function Page({
-  params, }: { params: Promise<{ slug: string }> }) {
-  const { id } = await params
-  return (<section>
-    <PageWrapper pageData={id} />
-
-  </section>)
+  const location = savedLocations.find((loc) => loc.id === id);
+  if (!location) return <div>Location not found</div>;
+  return (
+    <section className='container mx-auto max-md:p-4 mt-4'>
+      <PageTitle title="Konum Detayı" />
+      <h1>{location.name}</h1>
+      <p className="grid grid-cols-2 items-center">Enlem: <span>{location.coordinates.lat}</span></p>
+    </section>
+  )
 }
