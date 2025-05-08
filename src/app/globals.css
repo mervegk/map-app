@@ -1,6 +1,6 @@
-@tailwind utilities;
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
@@ -131,6 +131,6 @@
   }
 
   .menu-items {
-    @apply max-lg:w-full max-lg:h-full max-lg:p-3 hover:bg-gray-200 duration-300 transition-colors ease-in-out
+    @apply max-lg:w-full max-lg:h-full max-lg:p-3 lg:py-1 lg:px-2 lg:h-full hover:bg-gray-200 duration-300 transition-colors ease-in-out
   }
 }

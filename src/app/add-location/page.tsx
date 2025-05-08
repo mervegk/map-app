@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, useMap, useAdvancedMarkerRef, Marker, MapMouseEvent } from '@vis.gl/react-google-maps'
 import SaveLocation from '@/components/SaveLocation'
-import Markers from '@/components/Home/Markers'
+import Markers from '@/components/Marker/Markers'
 import { useMarkerColor } from '@/context/MarkerContext'
 import { useSavedLocations } from '@/context/SavedLocationsContext'
 import { defaultPosition } from '@/components/Home/MainMap'

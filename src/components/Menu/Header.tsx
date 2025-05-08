@@ -7,7 +7,7 @@ type Props = {}
 export default function Header({ }: Props) {
   return (
     <header className="container mx-auto">
-      <nav className="text-center p-4 flex items-center justify-center w-full h-full gap-4 max-lg:hidden">
+      <nav className="text-center py-2 px-4 flex items-center justify-center w-full h-full max-lg:hidden">
         <MenuList />
       </nav>
       <MobileMenu />
