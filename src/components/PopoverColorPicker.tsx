@@ -1,7 +1,5 @@
 "use client"
 import { useState, useRef, useCallback, Dispatch } from "react";
-import { Button } from "./ui/button";
-import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { SetStateAction } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
@@ -37,19 +35,3 @@ export default function PopoverColorPicker({ color, onChange }: Props) {
     </div>
   )
 }
-
-/*  <Popover modal>
-   <PopoverTrigger asChild>
-     <Button className="swatch" style={{ background: color }}></Button>
-   </PopoverTrigger>
-   <PopoverContent className="w-auto">
-     <HexColorPicker color={color} onChange={onChange} />
-     <HexColorInput
-       color={color}
-       onChange={onChange}
-       prefixed
-       className="mt-2 border rounded px-2 py-1 text-sm"
-     />
-   </PopoverContent>
- </Popover> */
-
