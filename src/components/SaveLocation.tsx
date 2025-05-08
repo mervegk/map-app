@@ -4,9 +4,10 @@ import { Button } from './ui/button'
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from './ui/dialog'
 import { Input } from './ui/input'
 import { useSavedLocations } from '@/context/SavedLocationsContext'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function SaveLocation({ lat, lng }: Coordinates) {
-  const { savedLocations, addLocations } = useSavedLocations()
+  const { addLocations } = useSavedLocations()
   const [locationName, setLocationName] = useState<string>()
 
   const handleAddLocation = () => {
@@ -14,7 +15,7 @@ export default function SaveLocation({ lat, lng }: Coordinates) {
       const newLocation: SavedLocationType = {
         name: locationName,
         coordinates: { lat, lng },
-        id: 0
+        id: uuidv4()
       }
       addLocations(newLocation)
     }

@@ -11,8 +11,8 @@ export default function page({ }: Props) {
   const { background, borderColor, glyphColor } = useMarkerColor()
 
   return (
-    <section className='container mx-auto max-md:p-4'>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4'>
+    <section className='container mx-auto max-md:p-4 mt-4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4'>
         {
           savedLocations && savedLocations.map((location, index) =>
             <Card key={index}>
