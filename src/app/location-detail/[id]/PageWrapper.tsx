@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { useSavedLocations } from '@/context/SavedLocationsContext'
 
 type Props = {
   pageData: SavedLocationType

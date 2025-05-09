@@ -12,14 +12,12 @@ export default function LocationList({ }: Props) {
   const { background, borderColor, glyphColor } = useMapPinColors()
   const { locations } = useLocationList()
 
-  console.log(locations)
-
   return (
     <section className='container mx-auto max-md:p-4 mt-4'>
       <PageTitle title="Konum Listesi" />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4'>
         {
-          locations && locations?.map((location) =>
+          locations && locations?.map((location: SavedLocationType) =>
             <Link key={location.id} href={`/location-detail/${location.id}`}>
               <Card className="h-full">
                 <CardContent>

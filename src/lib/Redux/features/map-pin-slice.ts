@@ -6,9 +6,9 @@ type InitialState = {
 
 const initialState = {
   value: {
-    background: "#fff",
-    borderColor: "#fff",
-    glyphColor: "#fff"
+    background: "#ea4335",
+    borderColor: "#c5221f",
+    glyphColor: "#b31412"
   }
 } as InitialState
 

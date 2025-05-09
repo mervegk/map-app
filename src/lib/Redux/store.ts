@@ -5,7 +5,7 @@ import locationListReducer from './features/location-list-slice'
 const saveToLocalStorage = (state: any) => {
   try {
     const serializedState = JSON.stringify(state.mapPinColors)
-    const serializedLocations = JSON.stringify(state.locationList)
+    const serializedLocations = JSON.stringify(state.locationList.value)
 
     localStorage.setItem("mapPinColors", serializedState)
     localStorage.setItem("locationList", serializedLocations)
@@ -23,7 +23,9 @@ const loadFromLocalStorage = () => {
 
     return {
       mapPinColors: JSON.parse(serializedMapPinColors),
-      locationList: JSON.parse(serializedLocations)
+      locationList: {
+        value: JSON.parse(serializedLocations)
+      }
     };
   } catch (e) {
     console.warn("localStorage'dan Redux state okunamadı", e)
@@ -31,7 +33,10 @@ const loadFromLocalStorage = () => {
   }
 }
 
-const preloadedState = loadFromLocalStorage()
+
+const isClient = typeof window !== 'undefined'
+
+const preloadedState = isClient ? loadFromLocalStorage() : undefined
 
 export const store = configureStore({
   reducer: {
