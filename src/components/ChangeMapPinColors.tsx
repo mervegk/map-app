@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Button } from './ui/button';
 import PopoverColorPicker from './PopoverColorPicker';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '@/lib/store';
-import { setBgColor, setBorderColor, setGlyphColor } from '@/lib/features/map-pin-slice';
+import { RootState, AppDispatch } from '@/lib/Redux/store';
+import { setBgColor, setBorderColor, setGlyphColor } from '@/lib/Redux/features/map-pin-slice';
 
 export default function ChangeMapPinColors({ type, label }: MapPinColors) {
 
