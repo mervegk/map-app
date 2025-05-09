@@ -3,6 +3,7 @@ import { useParams } from "next/navigation"
 import { useLocationList } from "@/hooks/useLocationList";
 import { Card, CardTitle, CardContent } from "@/components/ui/card";
 import PageTitle from "@/components/PageTitle";
+import PageWrapper from "./PageWrapper";
 
 export default function Page() {
   const { id } = useParams();
@@ -15,8 +16,7 @@ export default function Page() {
   return (
     <section className='container mx-auto max-md:p-4 mt-4'>
       <PageTitle title="Konum Detayı" />
-      <h1>{location.name}</h1>
-      <p className="grid grid-cols-2 items-center">Enlem: <span>{location.coordinates.lat}</span></p>
+      <PageWrapper pageData={location} />
     </section>
   );
 }

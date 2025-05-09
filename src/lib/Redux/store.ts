@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import mapPinColorsReducer from './features/map-pin-slice'
-import locationListReducer from './features/location-list-slice'
+import mapPinColorsReducer from './slices/map-pin-slice'
+import locationListReducer from './slices/location-list-slice'
 
 const saveToLocalStorage = (state: any) => {
   try {

@@ -6,7 +6,7 @@ import { Input } from './ui/input'
 import { v4 as uuidv4 } from 'uuid'
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/lib/Redux/store';
-import { addLocation } from '@/lib/Redux/features/location-list-slice'
+import { addLocation } from '@/lib/Redux/slices/location-list-slice'
 
 export default function SaveLocation({ lat, lng }: Coordinates) {
   const [locationName, setLocationName] = useState<string | null>()
