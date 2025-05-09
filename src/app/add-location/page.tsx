@@ -3,15 +3,15 @@ import { useState, useCallback } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow, useMap, useAdvancedMarkerRef, Marker, MapMouseEvent } from '@vis.gl/react-google-maps'
 import SaveLocation from '@/components/SaveLocation'
 import Markers from '@/components/Marker/Markers'
-import { useMarkerColor } from '@/context/MarkerContext'
 import { useSavedLocations } from '@/context/SavedLocationsContext'
 import { defaultPosition } from '@/components/Home/MainMap'
 import { LatLng } from '@/components/Home/MainMap'
+import { useMapPinColors } from '@/hooks/useMapPinColors'
 
 type Props = {}
 
 export default function LocationList({ }: Props) {
-  const { background, borderColor, glyphColor } = useMarkerColor()
+  const { background, borderColor, glyphColor } = useMapPinColors()
   const { savedLocations, addLocations } = useSavedLocations()
   const [position, setPosition] = useState<google.maps.LatLngLiteral | null>(null)
   const [location, setLocation] = useState<LatLng>({ lat: null, lng: null })

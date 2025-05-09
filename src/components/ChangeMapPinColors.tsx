@@ -1,10 +1,17 @@
 'use client'
 import { useState } from 'react'
-import { useMarkerColor } from '@/context/MarkerContext'
 import { Button } from './ui/button';
 import PopoverColorPicker from './PopoverColorPicker';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '@/lib/store';
+import { setBgColor, setBorderColor, setGlyphColor } from '@/lib/features/map-pin-slice';
 
 export default function ChangeMapPinColors({ type, label }: MapPinColors) {
+
+  const dispatch = useDispatch<AppDispatch>()
+  const background = useSelector((state: RootState) => state.mapPinColors.value.background)
+  const borderColor = useSelector((state: RootState) => state.mapPinColors.value.borderColor)
+  const glyphColor = useSelector((state: RootState) => state.mapPinColors.value.glyphColor)
 
   const getColorByType = () => {
     let rawColor = ''
@@ -28,28 +35,22 @@ export default function ChangeMapPinColors({ type, label }: MapPinColors) {
     }
   }
 
-  const {
-    background,
-    borderColor,
-    glyphColor,
-    changeBgColor,
-    changeBorderColor,
-    changeGlyphColor } = useMarkerColor()
-
-  const [color, setColor] = useState(getColorByType() || '#fff')
+  const [color, setColor] = useState(getColorByType())
 
   const handleColorChange = () => {
     if (color) {
       switch (type) {
         case 'background':
-          changeBgColor(color)
+          dispatch(setBgColor(color))
           break
         case 'border':
-          changeBorderColor(color)
+          dispatch(setBorderColor(color))
           break
         case 'glyph':
-          changeGlyphColor(color)
+          dispatch(setGlyphColor(color))
           break
+        default:
+          return '#fff'
       }
     }
   }

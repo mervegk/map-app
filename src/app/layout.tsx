@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Menu/Header";
 import { MarkerColorProvider } from "@/context/MarkerContext";
 import { SavedLocationsProvider } from "@/context/SavedLocationsContext";
+import ReduxProvider from "@/components/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,12 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
         suppressHydrationWarning >
-        <MarkerColorProvider>
+        <ReduxProvider>
           <SavedLocationsProvider>
             <Header />
             {children}
           </SavedLocationsProvider>
-        </MarkerColorProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
