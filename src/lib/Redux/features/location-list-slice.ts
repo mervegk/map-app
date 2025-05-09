@@ -1,24 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type InitialState = {
-  value: SavedLocationType
+  value: SavedLocationType[]
 }
 
 const initialState = {
-  value: {
-    id: "",
-    name: "",
-    coordinates: {
-      lat: 0,
-      lng: 0
-    }
-  }
+  value: []
 } as InitialState
 
 export const locationList = createSlice({
   name: "location-list",
   initialState,
   reducers: {
-
+    addLocation: (state, action: PayloadAction<SavedLocationType>) => {
+      state.value.push(action.payload)
+    }
   }
 })
+
+export const { addLocation } = locationList.actions
+export default locationList.reducer

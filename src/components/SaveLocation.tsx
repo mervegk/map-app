@@ -1,14 +1,18 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button } from './ui/button'
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from './ui/dialog'
 import { Input } from './ui/input'
-import { useSavedLocations } from '@/context/SavedLocationsContext'
 import { v4 as uuidv4 } from 'uuid'
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/lib/Redux/store';
+import { addLocation } from '@/lib/Redux/features/location-list-slice'
 
 export default function SaveLocation({ lat, lng }: Coordinates) {
-  const { addLocations } = useSavedLocations()
-  const [locationName, setLocationName] = useState<string>()
+  const [locationName, setLocationName] = useState<string | null>()
+  const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch<AppDispatch>()
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleAddLocation = () => {
     if (locationName) {
@@ -17,13 +21,18 @@ export default function SaveLocation({ lat, lng }: Coordinates) {
         coordinates: { lat, lng },
         id: uuidv4()
       }
-      addLocations(newLocation)
+
+      dispatch(addLocation(newLocation))
+      setIsOpen(false)
+      if (inputRef.current) {
+        inputRef.current.value = ''
+      }
     }
   }
 
   return (
     <div>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={() => setIsOpen(prev => !prev)} >
         <DialogTrigger asChild>
           <Button size="lg" type="button" className='text-xl bg-[#2d3142] text-white'>
             Konumu Ekle
@@ -35,7 +44,7 @@ export default function SaveLocation({ lat, lng }: Coordinates) {
           </DialogHeader>
           <div>
             <p>Konum Adı <span className='text-red-500'>*</span></p>
-            <Input onChange={(e) => setLocationName(e.target.value)} required />
+            <Input ref={inputRef} onChange={(e) => setLocationName(e.target.value)} required />
           </div>
           <DialogFooter>
             <Button onClick={handleAddLocation}>Kaydet</Button>

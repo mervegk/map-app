@@ -1,23 +1,33 @@
 import { configureStore } from '@reduxjs/toolkit'
 import mapPinColorsReducer from './features/map-pin-slice'
+import locationListReducer from './features/location-list-slice'
 
 const saveToLocalStorage = (state: any) => {
   try {
-    const serializedState = JSON.stringify(state.mapPinColors);
-    localStorage.setItem("mapPinColors", serializedState);
+    const serializedState = JSON.stringify(state.mapPinColors)
+    const serializedLocations = JSON.stringify(state.locationList)
+
+    localStorage.setItem("mapPinColors", serializedState)
+    localStorage.setItem("locationList", serializedLocations)
   } catch (e) {
-    console.warn("Redux state localStorage'a kaydedilemedi", e);
+    console.warn("Redux state localStorage'a kaydedilemedi", e)
   }
 }
 
 const loadFromLocalStorage = () => {
   try {
-    const serializedState = localStorage.getItem("mapPinColors");
-    if (serializedState === null) return undefined;
-    return { mapPinColors: JSON.parse(serializedState) };
+    const serializedMapPinColors = localStorage.getItem("mapPinColors")
+    const serializedLocations = localStorage.getItem("locationList")
+
+    if (!serializedMapPinColors || !serializedLocations) return undefined
+
+    return {
+      mapPinColors: JSON.parse(serializedMapPinColors),
+      locationList: JSON.parse(serializedLocations)
+    };
   } catch (e) {
-    console.warn("localStorage'dan Redux state okunamadı", e);
-    return undefined;
+    console.warn("localStorage'dan Redux state okunamadı", e)
+    return undefined
   }
 }
 
@@ -25,7 +35,8 @@ const preloadedState = loadFromLocalStorage()
 
 export const store = configureStore({
   reducer: {
-    mapPinColors: mapPinColorsReducer
+    mapPinColors: mapPinColorsReducer,
+    locationList: locationListReducer
   },
   preloadedState
 })

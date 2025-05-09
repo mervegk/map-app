@@ -1,8 +1,3 @@
-interface SavedLocationsContextType {
-  savedLocations: SavedLocationType[]
-  addLocations: (location: SavedLocation) => void
-}
-
 interface Coordinates {
   lat: number;
   lng: number;

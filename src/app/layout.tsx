@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Menu/Header";
-import { SavedLocationsProvider } from "@/context/SavedLocationsContext";
 import ReduxProvider from "@/components/ReduxProvider";
 
 const geistSans = Geist({
@@ -31,10 +30,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
         suppressHydrationWarning >
         <ReduxProvider>
-          <SavedLocationsProvider>
-            <Header />
-            {children}
-          </SavedLocationsProvider>
+          <Header />
+          {children}
         </ReduxProvider>
       </body>
     </html>

@@ -28,5 +28,5 @@ const mapPinColors = createSlice({
   }
 })
 
-export const { setBgColor, setBorderColor, setGlyphColor } = mapPinColors.actions;
-export default mapPinColors.reducer;
+export const { setBgColor, setBorderColor, setGlyphColor } = mapPinColors.actions
+export default mapPinColors.reducer
