@@ -2,7 +2,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { APIProvider, Map, AdvancedMarker, Pin, MapMouseEvent } from '@vis.gl/react-google-maps'
 import Directions from '@/components/Directions'
-import { useMarkerColor } from '@/context/MarkerContext'
+import { useMapPinColors } from '@/hooks/useMapPinColors'
 
 type Props = {}
 export type LatLng = {
@@ -12,7 +12,7 @@ export type LatLng = {
 export const defaultPosition = { lat: 41.01750875299681, lng: 28.9709432341656 }
 
 export default function Page({ }: Props) {
-  const { background, borderColor, glyphColor } = useMarkerColor()
+  const { background, borderColor, glyphColor } = useMapPinColors()
   const [position, setPosition] = useState<google.maps.LatLngLiteral | null>(null)
   const [location, setLocation] = useState<LatLng>({ lat: null, lng: null })
   const [showRoute, setShowRoute] = useState(false)

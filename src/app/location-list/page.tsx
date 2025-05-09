@@ -3,14 +3,14 @@ import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { useSavedLocations } from "@/context/SavedLocationsContext"
-import { useMarkerColor } from "@/context/MarkerContext"
 import PageTitle from "@/components/PageTitle"
+import { useMapPinColors } from "@/hooks/useMapPinColors"
 
 type Props = {}
 
 export default function page({ }: Props) {
   const { savedLocations } = useSavedLocations()
-  const { background, borderColor, glyphColor } = useMarkerColor()
+  const { background, borderColor, glyphColor } = useMapPinColors()
 
   return (
     <section className='container mx-auto max-md:p-4 mt-4'>
