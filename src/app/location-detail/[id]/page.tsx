@@ -14,7 +14,7 @@ export default function Page() {
   if (!location) return <div>Location not found</div>;
 
   return (
-    <section className='container mx-auto max-md:p-4 mt-4'>
+    <section className='container mx-auto max-md:p-4 mt-4 pb-2'>
       <PageTitle title="Konum Detayı" />
       <PageWrapper pageData={location} />
     </section>
