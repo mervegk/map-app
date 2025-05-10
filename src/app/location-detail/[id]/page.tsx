@@ -1,7 +1,6 @@
 'use client'
 import { useParams } from "next/navigation"
 import { useLocationList } from "@/hooks/useLocationList";
-import { Card, CardTitle, CardContent } from "@/components/ui/card";
 import PageTitle from "@/components/PageTitle";
 import PageWrapper from "./PageWrapper";
 

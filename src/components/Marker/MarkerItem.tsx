@@ -14,8 +14,9 @@ export default function MarkerItem({ index, point, markerColors, showLocationNam
   return (
     <AdvancedMarker
       position={point.coordinates}
-      onMouseEnter={() => setShowLocationName(index)}
-      onMouseLeave={() => setShowLocationName(null)}
+      onClick={() => setShowLocationName(index)}
+      /*  onMouseEnter={() => setShowLocationName(index)}
+       onMouseLeave={() => setShowLocationName(null)} */
       ref={markerRef}
     >
       <Pin {...markerColors} />
